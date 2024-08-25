@@ -7,7 +7,7 @@ source("R/bechdel.R")
 source("R/plots.R")
 
 # targets
-tar_option_set(packages = c("readr", "dplyr", "ggplot2", "tidyr", "purrr", "tibble"))
+tar_option_set(packages = c("readr", "dplyr", "ggplot2", "tidyr", "purrr", "tibble", "stringr"))
 list(
   tar_target(file, "data/script.csv", format = "file"),
   tar_target(raw_data, get_data(file)),
