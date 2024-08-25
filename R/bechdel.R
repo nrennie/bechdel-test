@@ -94,9 +94,9 @@ bechdel_test_function <- function(data, female_names, male_names) {
 # Test each scene -------------------------------------------------------
 
 # Function to apply to act and scene data
-test_scene <- function(act, scene, data, female_names, male_names) {
+test_scene <- function(choose_act, choose_scene, data, female_names, male_names) {
   scene_data <- data |>
-    filter(act == act, scene == scene)
+    filter(act == choose_act & scene == choose_scene)
   bechdel_test_function(
     data = scene_data,
     female_names = female_names,
@@ -119,17 +119,18 @@ bechdel_test <- function(
       .x = pull(., act),
       .y = pull(., scene),
       .f = ~ test_scene(
-        act = .x,
-        scene = .y,
+        choose_act = .x,
+        choose_scene = .y,
         data = data,
-        male_names = male_names,
-        female_names = female_names
+        female_names = female_names,
+        male_names = male_names
       )
     ) |>
     unlist() |>
     matrix(ncol = 3, byrow = TRUE) |>
     as_tibble(.name_repair = "unique") |>
     rename("test1" = 1, "test2" = 2, "test3" = 3) |>
+    rowwise() |> 
     mutate(overall = all(test1, test2, test3)) |>
     cbind(unique_scenes) |>
     as_tibble())

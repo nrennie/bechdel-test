@@ -7,9 +7,10 @@ overall_plot <- function(all_tests) {
     geom_tile(aes(x = factor(scene), y = factor(act), fill = overall)) +
     scale_fill_manual(
       values = c("TRUE" = "grey20", "FALSE" = "grey90"),
+      labels = c("TRUE" = "Pass", "FALSE" = "Fail"),
       drop = FALSE
     ) +
-    labs(x = NULL, y = NULL) +
+    labs(x = NULL, y = NULL, title = "Does Romeo and Juliet pass the Bechdel test?") +
     scale_y_discrete(limits = rev) +
     coord_cartesian(expand = FALSE) +
     theme_minimal() +
