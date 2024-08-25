@@ -10,7 +10,7 @@ See more on [Wikipedia](https://en.wikipedia.org/wiki/Bechdel_test).
 
 ## Data
 
-The script data is scraped from [https://shakespeare.mit.edu/romeo_juliet/full.html](https://shakespeare.mit.edu/romeo_juliet/full.html), and processed into CSV format. The processing code can be found in the `R/scrape_data.R` file.
+The script data is scraped from [shakespeare.mit.edu/romeo_juliet/full.html](https://shakespeare.mit.edu/romeo_juliet/full.html), and processed into CSV format. The processing code can be found in the `R/scrape_data.R` file.
 
 ## Implementation
 
@@ -29,7 +29,7 @@ Two female characters are considered to be having a conversation if they have co
 The conversation between two female characters is considered to not be about a man if it does not contain any of the male names, or the words *he*, *him*, *his*, or *he's*.
 
 > [!WARNING]
-> The implementation of the third test is currently a work-in-progress. Currently if any individual line doesn't contain a mention of a man, it is considered a pass. 
+> The implementation of the third test is currently a work-in-progress. Currently if any individual line doesn't contain a mention of a man, it is considered a pass. This means the current pass rate is inflated.
 
 ## Results
 

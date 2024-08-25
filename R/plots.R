@@ -4,7 +4,10 @@ overall_plot <- function(all_tests) {
     select(act, scene, overall) |>
     mutate(overall = factor(overall, levels = c("TRUE", "FALSE"))) |>
     ggplot() +
-    geom_tile(aes(x = factor(scene), y = factor(act), fill = overall)) +
+    geom_tile(
+      mapping = aes(x = factor(scene), y = factor(act), fill = overall),
+      colour = "black"
+    ) +
     scale_fill_manual(
       values = c("TRUE" = "grey20", "FALSE" = "grey90"),
       labels = c("TRUE" = "Pass", "FALSE" = "Fail"),
@@ -16,7 +19,8 @@ overall_plot <- function(all_tests) {
     theme_minimal() +
     theme(
       legend.position = "top",
-      legend.title = element_blank()
+      legend.title = element_blank(),
+      panel.grid = element_blank()
     )
   ggsave("results/overall_plot.png", width = 8, height = 4, bg = "white")
 }
@@ -35,7 +39,8 @@ individual_plot <- function(all_tests) {
     mutate(value = factor(value, levels = c("TRUE", "FALSE"))) |>
     ggplot() +
     geom_tile(
-      aes(x = scene_label, y = test, fill = value)
+      mapping = aes(x = scene_label, y = test, fill = value),
+      colour = "black"
     ) +
     scale_fill_manual(
       values = c("TRUE" = "grey20", "FALSE" = "grey90"),
@@ -55,7 +60,8 @@ individual_plot <- function(all_tests) {
     theme(
       axis.text.x = element_text(angle = 90),
       legend.position = "top",
-      legend.title = element_blank()
+      legend.title = element_blank(),
+      panel.grid = element_blank()
     )
   ggsave("results/individual_plot.png", width = 8, height = 4, bg = "white")
 }
