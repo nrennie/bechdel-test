@@ -48,7 +48,7 @@ individual_plot <- function(all_tests) {
     ) +
     scale_y_discrete(
       labels = c(
-        "test1" = "There are at least two named women",
+        "test1" = "There are at least two female characters",
         "test2" = "who speak to each other",
         "test3" = "about something other than a man"
       ),
