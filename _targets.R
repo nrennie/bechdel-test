@@ -8,6 +8,6 @@ list(
   tar_target(file, "data/dialogue.csv", format = "file"),
   tar_target(raw_data, get_data(file)),
   tar_target(tests, test_all_episodes(raw_data, female_names, male_names)),
-  tar_target(overall_plot, overall_plot(tests)),
-  tar_target(individual_plot, individual_plot(tests))
+  tar_target(overall_plot_output, overall_plot(tests)),
+  tar_target(individual_plot_output, individual_plot(tests))
 )
