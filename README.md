@@ -31,3 +31,12 @@ The conversation between two female characters is considered to not be about a m
 > [!WARNING]
 > The implementation of the third test is currently a work-in-progress. Currently if any individual line doesn't contain a mention of a man, it is considered a pass. 
 
+## Results
+
+### Overall Bechdel Test
+
+<img src="results/overall_plot.png" width="80%">
+
+### Individual Bechdel Test Elements
+
+<img src="results/individual_plot.png" width="80%">
