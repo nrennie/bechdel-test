@@ -119,8 +119,8 @@ bechdel_test <- function(
       .x = pull(., act),
       .y = pull(., scene),
       .f = ~ test_scene(
-        s = .x,
-        e = .y,
+        act = .x,
+        scene = .y,
         data = data,
         male_names = male_names,
         female_names = female_names

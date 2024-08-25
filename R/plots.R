@@ -1,13 +1,15 @@
-# Heat map of season and episode all pass
+# Heat map of act and scene all pass
 overall_plot <- function(all_tests) {
   g <- all_tests |>
-    select(season, episode, overall) |>
-    mutate(overall = factor(overall, levels = c("TRUE", "FALSE"))) |> 
+    select(act, scene, overall) |>
+    mutate(overall = factor(overall, levels = c("TRUE", "FALSE"))) |>
     ggplot() +
-    geom_tile(aes(x = factor(episode), y = factor(season), fill = overall)) +
-    scale_fill_manual(values = c("TRUE" = "grey", "FALSE" = "blue"),
-                      drop = FALSE) +
-    labs(x = "Episode", y = "Season") +
+    geom_tile(aes(x = factor(scene), y = factor(act), fill = overall)) +
+    scale_fill_manual(
+      values = c("TRUE" = "grey20", "FALSE" = "grey90"),
+      drop = FALSE
+    ) +
+    labs(x = NULL, y = NULL) +
     scale_y_discrete(limits = rev) +
     coord_cartesian(expand = FALSE) +
     theme_minimal() +
@@ -18,24 +20,26 @@ overall_plot <- function(all_tests) {
   ggsave("results/overall_plot.png", width = 8, height = 4, bg = "white")
 }
 
-# Heat map of three tests and episode and season along bottom
+# Heat map of three tests and scene and act along bottom
 individual_plot <- function(all_tests) {
   all_tests |>
     mutate(
-      episode_label = paste0("Season ", season, " Episode ", episode)
+      scene_label = paste0(act, ", ", scene)
     ) |>
-    select(episode_label, test1, test2, test3) |>
+    select(scene_label, test1, test2, test3) |>
     pivot_longer(
-      -episode_label,
+      -scene_label,
       names_to = "test", values_to = "value"
     ) |>
-    mutate(value = factor(value, levels = c("TRUE", "FALSE"))) |> 
+    mutate(value = factor(value, levels = c("TRUE", "FALSE"))) |>
     ggplot() +
     geom_tile(
-      aes(x = episode_label, y = test, fill = value)
+      aes(x = scene_label, y = test, fill = value)
     ) +
-    scale_fill_manual(values = c("TRUE" = "grey", "FALSE" = "blue"),
-                      drop = FALSE) +
+    scale_fill_manual(
+      values = c("TRUE" = "grey20", "FALSE" = "grey90"),
+      drop = FALSE
+    ) +
     scale_y_discrete(
       labels = c(
         "test1" = "There are at least two named women",
